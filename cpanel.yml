@@ -52,14 +52,98 @@ resources:
         - protocol: icmp
         - protocol: udp
         - protocol: tcp
+          port_range_min: 1
+          port_range_max: 1
+        - protocol: tcp
+          port_range_min: 7
+          port_range_max: 7
+        - protocol: tcp
           port_range_min: 22
           port_range_max: 22
+        - protocol: tcp
+          port_range_min: 25
+          port_range_max: 25
+        - protocol: tcp
+          port_range_min: 26
+          port_range_max: 26
+        - protocol: tcp
+          port_range_min: 37
+          port_range_max: 37
+        - protocol: tcp
+          port_range_min: 43
+          port_range_max: 43
+        - protocol: tcp
+          port_range_min: 53
+          port_range_max: 53
+        - protocol: tcp
+          port_range_min: 110
+          port_range_max: 110
+        - protocol: tcp
+          port_range_min: 113
+          port_range_max: 113
+        - protocol: tcp
+          port_range_min: 143
+          port_range_max: 143
+        - protocol: tcp
+          port_range_min: 443
+          port_range_max: 443
+        - protocol: tcp
+          port_range_min: 465
+          port_range_max: 465
+        - protocol: tcp
+          port_range_min: 579
+          port_range_max: 579
+        - protocol: tcp
+          port_range_min: 587
+          port_range_max: 587
+        - protocol: tcp
+          port_range_min: 783
+          port_range_max: 783
+        - protocol: tcp
+          port_range_min: 873
+          port_range_max: 873
+        - protocol: tcp
+          port_range_min: 953
+          port_range_max: 953
+        - protocol: tcp
+          port_range_min: 995
+          port_range_max: 995
+        - protocol: tcp
+          port_range_min: 2077
+          port_range_max: 2077
+        - protocol: tcp
+          port_range_min: 2078
+          port_range_max: 2078
+        - protocol: tcp
+          port_range_min: 2079
+          port_range_max: 2079
+        - protocol: tcp
+          port_range_min: 2080
+          port_range_max: 2080
+        - protocol: tcp
+          port_range_min: 2082
+          port_range_max: 2082
+        - protocol: tcp
+          port_range_min: 2083
+          port_range_max: 2083
+        - protocol: tcp
+          port_range_min: 2086
+          port_range_max: 2086
         - protocol: tcp
           port_range_min: 2087
           port_range_max: 2087
         - protocol: tcp
-          port_range_min: 443
-          port_range_max: 443
+          port_range_min: 2089
+          port_range_max: 2089
+        - protocol: tcp
+          port_range_min: 2091
+          port_range_max: 2091
+        - protocol: tcp
+          port_range_min: 2095
+          port_range_max: 2095
+        - protocol: tcp
+          port_range_min: 2096
+          port_range_max: 2096
         - protocol: tcp
           port_range_min: 80
           port_range_max: 80
@@ -105,12 +189,6 @@ resources:
                     root:$PASSWORD
                   expire: False
                 ssh_pwauth: True
-        - config:
-            str_replace:
-              template: |
-                #!/bin/bash
-                /usr/local/cpanel/scripts/snapshot_prep --yes
-                /usr/local/cpanel/scripts/post_snapshot --yes
 
   create_vm:
     type: OS::Nova::Server
@@ -128,9 +206,6 @@ outputs:
   user:
     description: User Name
     value: {get_param: username}
-  email:
-    description: Email
-    value: {get_param: email}
   controller:
     description: Controller IP
     value: {get_attr: [floating,floating_ip_address]}
