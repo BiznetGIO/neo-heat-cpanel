@@ -173,7 +173,7 @@ resources:
                     shell: /bin/bash
                 chpasswd:
                   list: |
-                    $USERNAME:$PASSWORD,
+                    $USERNAME:$PASSWORD
                     root:$PASSWORD
                   expire: False
                 ssh_pwauth: True
